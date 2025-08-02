@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://tinyurl.com/34bhzkan" />
+<style>
+  .calendar-frame {width:100%;height:600px;border:none;}
+  .events-box, .weekdays, .days-grid {display:none;}
+</style>
+</head>
+<body>
+  <div class="dash">
+    <div class="wrapper">
+      <div class="top">
+        <h1>Dashboard</h1>
+        <p>Welcome back! Here's what's happening today.</p>
+      </div>
+      <div class="stats">
+        <div class="box">
+          <div class="box-inner">
+            <div class="info">
+              <p class="title">Profile</p>
+              <p class="value">5</p>
+            </div>
+            <a href="profile.html"><i class="fas fa-bell icon"></i></a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-inner">
+            <div class="info">
+              <p class="title">Leave</p>
+              <p class="value">12</p>
+            </div>
+            <a href="leave.html"><i class="fas fa-calendar-days icon"></i></a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-inner">
+            <div class="info">
+              <p class="title">Fee</p>
+              <p class="value">2 paisa</p>
+            </div>
+            <a href="fees.html"><i class="fas fa-wallet icon"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="calendar card">
+          <div class="card-head"><h3>Calendar</h3></div>
+          <div class="card-body">
+            <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id%40group.calendar.google.com&ctz=Asia%2FKathmandu" class="calendar-frame" loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="notices card">
+          <div class="card-head"><h3>Notice Board</h3></div>
+          <div class="card-body">
+            <div class="notice-list">
+              <div class="notice">
+                <div class="notice-top"><h4>Orientation Program</h4><span>Today</span></div>
+                <p>Jhyapppp kta hoooo</p>
+              </div>
+              <div class="notice">
+                <div class="notice-top"><h4>New Feature Release</h4><span>Yesterday</span></div>
+                <p>Check out our latest dashboard improvements.</p>
+              </div>
+              <div class="notice">
+                <div class="notice-top"><h4>Holiday Schedule</h4><span>2 days ago</span></div>
+                <p>Updated holiday schedule for the upcoming month.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extras">
+        <div class="card">
+          <div class="card-head"><a href="recent.html" ; text-decoration:none><h3>Recent College Events</h3></a></div>
+          <div class="card-body"><p class="filler">Activity stuff</p></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3><a href="assignment.html" class="card-link">Assignments</a></h3></div>
+          <div class="card-body"><p class="filler">No pending assignments.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
