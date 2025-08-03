@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fee Management </title>
-  <link rel="stylesheet" href=""/>
+  <link rel="stylesheet" href="feescss.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
 <body>
@@ -12,7 +12,54 @@
     <div class="container">
             <a href="dashboard.html" class="back-button">
         <i class="fas fa-arrow-left"></i> Back to Dashboard
-      </a>
+      </a><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Fee Statement</title>
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Student Fee Statement</h1>
+
+    <div class="fee-row"><span>Tuition Fee:</span><span id="tuitionFee">$0</span></div>
+    <div class="fee-row"><span>Transportation Fee:</span><span id="transportFee">$0</span></div>
+
+    <div class="fee-row total"><span>Total Due:</span><span id="totalDue">$0</span></div>
+    <div class="fee-row"><span>Amount Paid:</span><span id="amountPaid">$0</span></div>
+    <div class="fee-row"><span>Remaining Balance:</span><span id="remaining">$0</span></div>
+
+    <div class="progress-section">
+      <div class="progress-labels"><span>Paid</span><span>Due</span></div>
+      <progress id="feeProgress" value="0" max="0"></progress>
+    </div>
+  </div>
+
+  <script>
+    
+    const tuitionFee = 40000;
+    const transportFee = 5000;
+    const amountPaid = 30000; 
+
+
+    const totalDue = tuitionFee + transportFee;
+    const remaining = Math.max(totalDue - amountPaid, 0);
+
+   
+    document.getElementById('tuitionFee').textContent = `Rs${tuitionFee.toLocaleString()}`;
+    document.getElementById('transportFee').textContent = `Rs${transportFee.toLocaleString()}`;
+    document.getElementById('totalDue').textContent = `Rs${totalDue.toLocaleString()}`;
+    document.getElementById('amountPaid').textContent = `Rs${amountPaid.toLocaleString()}`;
+    document.getElementById('remaining').textContent = `Rs${remaining.toLocaleString()}`;
+
+    const feeProgress = document.getElementById('feeProgress');
+    feeProgress.max = totalDue;
+    feeProgress.value = amountPaid;
+  </script>
+</body>
+</html>
             <div class="page-header">
         <h1><i class="fas fa-wallet"></i> Fee Management</h1>
         <p>Track your fee payments and outstanding balance</p>
@@ -31,5 +78,6 @@
         </div>
          </div>
   </div>
+
 </body>
 </html>

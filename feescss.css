@@ -1,3 +1,75 @@
-body{
- background-color: aliceblue;
-}
+
+   
+    :root {
+      --primary-blue: #005bb5;
+      --light-blue: #f0f8ff;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--light-blue);
+      color: var(--primary-blue);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: var(--white);
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 128, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .fee-row.total {
+      font-weight: bold;
+      border-top: 2px solid var(--primary-blue);
+      padding-top: 0.75rem;
+    }
+
+    .progress-section {
+      margin-top: 2rem;
+    }
+
+    progress {
+      width: 100%;
+      height: 22px;
+      appearance: none;
+    }
+
+    
+    progress::-webkit-progress-bar {
+      background-color: var(--light-blue);
+      border-radius: 12px;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: var(--primary-blue);
+      border-radius: 12px;
+    }
+
+    progress::-moz-progress-bar {
+      background-color: var(--primary-blue);
+      border-radius: 12px;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+ 
