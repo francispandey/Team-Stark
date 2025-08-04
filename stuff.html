@@ -1,228 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link ref="stylesheet" href="course.css">
-    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif&display=swap" rel="stylesheet" />
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coursework</title>
-   <link rel="stylesheet" href="stuff.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher's Coursework Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    /* Your full CSS goes here (shortened below for readability) */
+    * {
+      box-sizing: border-box;
+    }
 
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h1>Course</h1>
-                </div>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .header {
+      background: #2563eb;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .logo h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .main-content {
+      padding: 1rem;
+    }
+
+    .section {
+      background: #fff;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .section-header h2 {
+      margin-bottom: 0.3rem;
+      color: #2563eb;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+
+    .stat-icon {
+      background: #2563eb;
+      color: #fff;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 16px;
+    }
+
+    .course-tabs {
+      margin: 1rem 0;
+    }
+
+    .tab-button {
+      padding: 8px 12px;
+      margin: 5px;
+      border: none;
+      background: #e5e7eb;
+      color: #333;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .assignments-table-container {
+      overflow-x: auto;
+    }
+
+    .assignments-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .assignments-table th,
+    .assignments-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .assignments-table th {
+      background: #f4f4f4;
+    }
+
+    .student-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .student-avatar {
+      background: #2563eb;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .status.submitted, .grade.graded {
+      background: #dcfce7;
+      color: #166534;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .status.overdue, .grade.missing {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .grade.pending {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .btn-small {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .btn-warning {
+      background: #facc15;
+      color: #333;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .homework-form-container {
+      margin-top: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-actions {
+      margin-top: 1rem;
+    }
+
+    .btn-secondary {
+      background: #6b7280;
+      color: #fff;
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 14px;
+      margin-top: 2rem;
+    }
+
+    .footer a {
+      color: #60a5fa;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-graduation-cap"></i>
+          <h1>Teacher Portal</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Overview Section -->
+      <section id="overview" class="section">
+        <div class="section-header">
+          <h2><i class="fas fa-chart-line"></i> Coursework Overview</h2>
+          <p class="section-subtitle">Quick overview of your courses and recent activity</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-book"></i></div>
+            <div class="stat-content">
+              <h3>4</h3>
+              <p>Active Courses</p>
             </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-content">
+              <h3>127</h3>
+              <p>Total Students</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-clipboard-check"></i></div>
+            <div class="stat-content">
+              <h3>15</h3>
+              <p>Pending Grades</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="stat-content">
+              <h3>3</h3>
+              <p>Due This Week</p>
+            </div>
+          </div>
         </div>
-    </header>
+      </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Overview Section -->
-            <section id="overview" class="section">
-                <div class="section-header">
-                    <h2><i class="fas fa-chart-line"></i> Coursework Overview</h2>
-                    <p class="section-subtitle">Quick overview of your courses and recent activity</p>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>4</h3>
-                            <p>Active Courses</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>127</h3>
-                            <p>Total Students</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>15</h3>
-                            <p>Pending Grades</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>3</h3>
-                            <p>Due This Week</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Assignments Section -->
-            <section id="assignments" class="section">
-                <div class="section-header">
-                    <h2><i class="fas fa-tasks"></i> Student Assignments & Grades</h2>
-                    <p class="section-subtitle">View and manage student submissions and grades</p>
-                </div>
-                
-                <div class="course-tabs">
-                    <button class="tab-button active">Calculus</button>
-                    <button class="tab-button"> Linear Algebra</button>
-                    <button class="tab-button">Real Analysis</button>
-                    <button class="tab-button">Imaginary Number</button>
-                </div>
-
-                <div class="assignments-table-container">
-                    <table class="assignments-table">
-                        <thead>
-                            <tr>
-                                <th>Student Name</th>
-                                <th>Assignment</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Grade</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="student-info">
-                                        <div class="student-avatar">SC</div>
-                                        <span>Honey Boney</span>
-                                    </div>
-                                </td>
-                                <td>Project 1</td>
-                                <td>Aug 5, 2025</td>
-                                <td><span class="status submitted">Submitted</span></td>
-                                <td><span class="grade pending">Pending</span></td>
-                                <td>
-                                    <button class="btn-small btn-primary">Grade</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-info">
-                                        <div class="student-avatar">MJ</div>
-                                        <span>Jai Shree Ram</span>
-                                    </div>
-                                </td>
-                                <td>Project 1</td>
-                                <td>Aug 5, 2025</td>
-                                <td><span class="status overdue">Overdue</span></td>
-                                <td><span class="grade missing">Missing</span></td>
-                                <td>
-                                    <button class="btn-small btn-warning">Contact</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="student-info">
-                                        <div class="student-avatar">ER</div>
-                                        <span>Ram Hari Timalsina</span>
-                                    </div>
-                                </td>
-                                <td> Project 1</td>
-                                <td>Aug 5, 2025</td>
-                                <td><span class="status submitted">Submitted</span></td>
-                                <td><span class="grade graded">92%</span></td>
-                                <td>
-                                    <button class="btn-small btn-success">View</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Homework Assignment Section -->
-            <section id="homework" class="section">
-                <div class="section-header">
-                    <h2><i class="fas fa-plus-circle"></i> Assign New Homework</h2>
-                    <p class="section-subtitle">Create and assign homework to your students</p>
-                </div>
-                
-                <div class="homework-form-container">
-                    <form class="homework-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="course-select">Course</label>
-                                <select id="course-select" required>
-                                    <option value="">Select a course</option>
-                                    <option value="cs101">Calculus</option>
-                                    <option value="cs102">Linear Algebra</option>
-                                    <option value="cs201">Real Analysis</option>
-                                    <option value="cs301">Imaginary Number</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="assignment-title">Assignment Title</label>
-                                <input type="text" id="assignment-title" placeholder="Enter assignment title" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="due-date">Due Date</label>
-                                <input type="date" id="due-date" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="points">Total Points</label>
-                                <input type="number" id="points" placeholder="100" min="1" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="description">Assignment Description</label>
-                            <textarea id="description" rows="6" placeholder="Provide detailed instructions for the assignment..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="resources">Additional Resources (URLs)</label>
-                            <textarea id="resources" rows="3" placeholder="Add any helpful links or resources for students..."></textarea>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="button" class="btn-secondary">Save as Draft</button>
-                            <button type="submit" class="btn-primary">Assign to Students</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
+      <!-- Assignments Section -->
+      <section id="assignments" class="section">
+        <div class="section-header">
+          <h2><i class="fas fa-tasks"></i> Student Assignments & Grades</h2>
+          <p class="section-subtitle">View and manage student submissions and grades</p>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 EduManage. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <div class="course-tabs">
+          <button class="tab-button active">CS101 - Intro to Programming</button>
+          <button class="tab-button">CS102 - Data Structures</button>
+          <button class="tab-button">CS201 - Algorithms</button>
+          <button class="tab-button">CS301 - Database Systems</button>
         </div>
-    </footer>
-</body>
-</html>
 
-    
+        <div class="assignments-table-container">
+          <table class="assignments-table">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Assignment</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Grade</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="student-info"><div class="student-avatar">SC</div><span>Sarah Chen</span></div></td>
+                <td>Programming Project 1</td>
+                <td>Aug 5, 2025</td>
+                <td><span class="status submitted">Submitted</span></td>
+                <td><span class="grade pending">Pending</span></td>
+                <td><button class="btn-small btn-primary">Grade</button></td>
+              </tr>
+              <tr>
+                <td><div class="student-info"><div class="student-avatar">MJ</div><span>Michael Johnson</span></div></td>
+                <td>Programming Project 1</td>
+                <td>Aug 5, 2025</td>
+                <td><span class="status overdue">Overdue</span></td>
+                <td><span class="grade missing">Missing</span></td>
+                <td><button class="btn-small btn-warning">Contact</button></td>
+              </tr>
+              <tr>
+                <td><div class="student-info"><div class="student-avatar">ER</div><span>Emily Rodriguez</span></div></td>
+                <td>Programming Project 1</td>
+                <td>Aug 5, 2025</td>
+                <td><span class="status submitted">Submitted</span></td>
+                <td><span class="grade graded">92%</span></td>
+                <td><button class="btn-small btn-success">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Homework Assignment Section -->
+      <section id="homework" class="section">
+        <div class="section-header">
+          <h2><i class="fas fa-plus-circle"></i> Assign New Homework</h2>
+          <p class="section-subtitle">Create and assign homework to your students</p>
+        </div>
+
+        <div class="homework-form-container">
+          <form class="homework-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="course-select">Course</label>
+                <select id="course-select" required>
+                  <option value="">Select a course</option>
+                  <option value="cs101">CS101 - Intro to Programming</option>
+                  <option value="cs102">CS102 - Data Structures</option>
+                  <option value="cs201">CS201 - Algorithms</option>
+                  <option value="cs301">CS301 - Database Systems</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="assignment-title">Assignment Title</label>
+                <input type="text" id="assignment-title" required>
+              </div>
+              <div class="form-group">
+                <label for="due-date">Due Date</label>
+                <input type="date" id="due-date" required>
+              </div>
+              <div class="form-group">
+                <label for="points">Total Points</label>
+                <input type="number" id="points" min="1" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Assignment Description</label>
+              <textarea id="description" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="resources">Additional Resources (URLs)</label>
+              <textarea id="resources" rows="3"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-secondary">Save as Draft</button>
+              <button type="submit" class="btn-primary">Assign to Students</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 EduManage. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
 </body>
 </html>
